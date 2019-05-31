@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Temperature Unit Converter</title>
+        
+        <!-- Animate.css -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+        
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+        
+        <!-- Bootstrap -->
+        <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Responsivness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    </head>
+    <body>
+    
+    <header>
+      <h1>  <i class="fas fa-temperature-low"></i> Temperature Unit Converter</h1>
+    </header>
+    
+    
+
+    <div class="animated slideInRight" id="input">
+    
+    <div class="dropdown">
+        <button id="input_btn" class="dropdown-toggle" data-toggle="dropdown">Celcius</button>
+        <i class="fas fa-caret-down"></i>
+        <ul class="dropdown-menu">
+            <li onclick="getTemp('celcius')">Celcius</li>
+            <li onclick="getTemp('kelvin')">Kelvin</li>
+            <li onclick="getTemp('fahrenheit')">Fahrenheit</li>
+        </ul>
+    </div>
+    
+    
+        <input onkeyup="getAns()" type="number">
+        
+    </div>
+    
+    
+    <div class="animated slideInLeft" id="output">
+    
+        <h1>Answer</h1>
+        
+         <div class="dropdown">
+        <button id="output_btn" class="dropdown-toggle" data-toggle="dropdown">Kelvin</button><i class="fas fa-caret-down"></i>
+        <ul class="dropdown-menu">
+            <li onclick="getAnsTemp('celcius')">Celcius</li>
+            <li onclick="getAnsTemp('kelvin')">Kelvin</li>
+            <li onclick="getAnsTemp('fahrenheit')">Fahrenheit</li>
+        </ul>
+    </div>
+    
+    <h2 id="ans"></h2>
+        
+    </div> 
+
+    <style>
+        body {
+    margin:0;
+}
+* {
+    font-family:'Century Gothic';
+}
+
+header {
+    background-color:#8542ff;
+    padding:5px 0;
+}
+
+header h1 {
+    font-size:1.6em;
+    text-align:center;
+    color:white;
+}
+
+
+#input {
+    margin-top:30px;
+}
+
+input {
+    width:100vw;
+    text-align:center;
+    border:none;
+    border-bottom:1.3px solid #8542ff;
+    font-size:1.3em;
+    margin-top:30px;
+    outline:none;
+}
+
+button {
+    border:none;
+    background-color:white;
+    font-size:1.3em;
+}
+.dropdown i {
+    color:#8542ff;
+    font-size:1.3em;
+}
+
+li {
+    border-bottom:1px solid #8542ff;
+    padding:5px;
+    font-size:1.2em;
+    cursor: pointer;
+}
+
+#output {
+    margin-top:40px;
+}
+
+#output h1 {
+    font-size:1.7em;
+    text-align:center;
+    color:#8542ff;
+}
+#output h2 {
+    text-align:center;
+    border-bottom:1.5px solid #8542ff;
+    font-size:1.3em;
+    margin-top:60px;
+}
+
+#start {
+    border:none;
+    background-color:#8542ff;
+    color:white;
+    font-size:1.3em;
+    padding:8px 44px;
+    position:relative;
+}
+    </style>
+
+
+    <script>
+        
+
+function getTemp (temp) {
+  var input_btn = document.getElementById("input_btn");
+  var ans = document.getElementById("ans");
+   var input = document.querySelector("#input input");
+  
+  
+    switch(temp) {
+        case 'kelvin':
+        input_btn.innerHTML = "Kelvin";
+        ans.innerHTML = "";
+        input.value = "";
+        break;
+        case 'celcius':
+        input_btn.innerHTML = "Celcius";
+        ans.innerHTML = "";
+        input.value = "";
+        break;
+        case 'fahrenheit':
+        input_btn.innerHTML = "Fahrenheit";
+        ans.innerHTML = "";
+        input.value = "";
+        break;
+    }
+}
+
+function getAnsTemp (ansTemp) {
+   var output_btn = document.getElementById("output_btn");
+   var ans = document.getElementById("ans");
+    var input = document.querySelector("#input input");
+   
+   
+    switch(ansTemp) {
+        case 'kelvin':
+        output_btn.innerHTML = "Kelvin";
+        ans.innerHTML = "";
+        input.value = "";
+        break;
+        case 'celcius':
+        output_btn.innerHTML = "Celcius";
+        ans.innerHTML = "";
+        input.value = "";
+        break;
+        case 'fahrenheit':
+        output_btn.innerHTML = "Fahrenheit";
+        ans.innerHTML = "";
+        input.value = "";
+        break;
+    }
+}
+
+function getAns() {
+ var input_btn = document.getElementById("input_btn");
+ var output_btn = document.getElementById("output_btn");
+ 
+    var input = document.querySelector("#input input");
+    var ans = document.getElementById("ans");
+    
+    
+    // Celcius to Kelvin
+    if(input_btn.innerHTML == "Celcius" && output_btn.innerHTML == "Kelvin") {
+     ans.innerHTML = Number(input.value) + 273.15;
+    }
+    
+    // Kelvin to Celcius
+     if(input_btn.innerHTML == "Kelvin" && output_btn.innerHTML == "Celcius") {
+     ans.innerHTML = Number(input.value) - 273.15;
+    }
+    
+    // If both are same
+    if(input_btn.innerHTML == output_btn.innerHTML) {
+        ans.innerHTML = Number(input.value);
+    }
+    
+    // Celcius to Fahrenheit
+     if(input_btn.innerHTML == "Celcius" && output_btn.innerHTML == "Fahrenheit") {
+         ans.innerHTML = (Number(input.value) * 9/5) + 32;
+     }
+     
+     // Fahrenheit to Celcius
+     if(input_btn.innerHTML == "Fahrenheit" && output_btn.innerHTML == "Celcius") {
+         ans.innerHTML = (Number(input.value) - 32) * 5/9;
+     }
+    
+    // Kelvin to Fahrenheit
+    if(input_btn.innerHTML == "Kelvin" && output_btn.innerHTML == "Fahrenheit") {
+        ans.innerHTML = (Number(input.value) - 273.15) * 9/5 + 32;
+    }
+    
+    // Fahrenheit to Kelvin
+    if(input_btn.innerHTML == "Fahrenheit" && output_btn.innerHTML == "Kelvin") {
+         ans.innerHTML = (Number(input.value) - 32) * 5/9 + 273.15;
+     }
+     
+}
+
+
+    </script>
+    
+        
+    </body>
+</html>
